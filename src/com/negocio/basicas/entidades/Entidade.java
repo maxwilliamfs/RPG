@@ -29,6 +29,9 @@ public abstract class Entidade {
     public abstract void atacar(Entidade alvo);
 
     //Metodos Padroes
+    public String getStatus(){
+        return;
+    }
     public String getNome() {
         return nome;
     }
