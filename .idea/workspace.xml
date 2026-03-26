@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c66c71a-a54b-420a-b59a-9761f62ed2c9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/negocio/basicas/entidades/InimigoMagico.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/negocio/basicas/entidades/JogadorMagico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/negocio/basicas/entidades/Bruxa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/negocio/basicas/entidades/Bruxa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/negocio/basicas/entidades/Entidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/negocio/basicas/entidades/Entidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/negocio/basicas/entidades/Feiticeiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/negocio/basicas/entidades/Feiticeiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/negocio/interfaces/Magico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/negocio/interfaces/Magico.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +50,11 @@
     &quot;last_opened_file_path&quot;: &quot;/home/megamex/Documentos/Projetos-Github/RPG&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.negocio.basicas.entidades" />
+    </key>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7c66c71a-a54b-420a-b59a-9761f62ed2c9" name="Changes" comment="" />

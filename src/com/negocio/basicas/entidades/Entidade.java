@@ -24,14 +24,15 @@ public abstract class Entidade {
     public void GanharEstamina(int valor){
         this.setpEstamina(this.getpEstamina() + valor);
     }
+    public String getStatus(){
+        return "Nome: " + this.getNome() + "\n" + "HP: " + this.getpVida() + "\n" + "Stamina: " +
+        this.getpEstamina();
+    }
 
     //Metodos Abstratos
     public abstract void atacar(Entidade alvo);
 
     //Metodos Padroes
-    public String getStatus(){
-        return;
-    }
     public String getNome() {
         return nome;
     }
