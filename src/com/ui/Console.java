@@ -26,7 +26,7 @@ public class Console {
             String l = scanner.nextLine();
             int op = Integer.parseInt(l);
 
-            Jogador player = null;
+            Entidade player = null;
             switch (op) {
                 case 1:
                     return false;
@@ -38,7 +38,7 @@ public class Console {
                     break;
             }
 
-            Inimigo enemy = null;
+            Entidade enemy = null;
             int r = random.nextInt(2) + 1;
             switch (op) {
                 case 1:
@@ -51,7 +51,7 @@ public class Console {
             batalha(player,enemy);
         }
     }
-    public static void batalha(Jogador player, Inimigo enemy){
+    public static void batalha(Entidade player, Entidade enemy){
 
     }
 }
