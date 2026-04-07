@@ -32,9 +32,9 @@ public abstract class Entidade {
     public String getStatus(){
         return "Nome: " + this.getNome() + " / HP:" + this.getpVida() + "\n" + "Stamina: " + this.getpEstamina();
     }
+    public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido){
 
-    //Metodos Abstratos
-    public abstract void atacar(Entidade alvo, ListaAtaques ataqueEscolhido);
+    }
 
     //Metodos Padroes
     public String getNome() {

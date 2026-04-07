@@ -9,10 +9,4 @@ public class Cavaleiro extends Jogador{
         this.getAtaques().set(1, BancoAtaques.espadada);
         this.getAtaques().set(2, BancoAtaques.corteProfundo);
     }
-
-    //Metodos
-    @Override
-    public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido){
-
-    }
 }
