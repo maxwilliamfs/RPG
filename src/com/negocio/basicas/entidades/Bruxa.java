@@ -8,8 +8,4 @@ public class Bruxa extends InimigoMagico implements Magico {
     public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido){
 
     }
-    @Override
-    public void atacar2(Entidade alvo, ListaAtaques ataqueEscolhido){
-
-    }
 }

@@ -7,8 +7,4 @@ public class Zumbi extends Inimigo{
     public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido){
 
     }
-    @Override
-    public void atacar2(Entidade alvo, ListaAtaques ataqueEscolhido){
-
-    }
 }

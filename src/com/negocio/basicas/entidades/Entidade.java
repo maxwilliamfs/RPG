@@ -35,7 +35,6 @@ public abstract class Entidade {
 
     //Metodos Abstratos
     public abstract void atacar(Entidade alvo, ListaAtaques ataqueEscolhido);
-    public abstract void atacar2(Entidade alvo, ListaAtaques ataqueEscolhido);
 
     //Metodos Padroes
     public String getNome() {

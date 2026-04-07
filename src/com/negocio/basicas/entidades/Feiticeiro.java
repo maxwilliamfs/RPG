@@ -7,12 +7,4 @@ public class Feiticeiro extends JogadorMagico implements Magico {
     public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido){
 
     }
-    @Override
-    public void atacar2(Entidade alvo, ListaAtaques ataqueEscolhido){
-
-    }
-    @Override
-    public String getListaAtaques(){
-
-    }
 }

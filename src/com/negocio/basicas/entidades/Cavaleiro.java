@@ -1,21 +1,18 @@
 package com.negocio.basicas.entidades;
 
+import com.negocio.basicas.BancoAtaques;
 import com.negocio.basicas.enuns.ListaAtaques;
 
 public class Cavaleiro extends Jogador{
-    //Atributos
+    //Contrutor
+    public Cavaleiro(){
+        this.getAtaques().set(1, BancoAtaques.espadada);
+        this.getAtaques().set(2, BancoAtaques.corteProfundo);
+    }
 
     //Metodos
     @Override
     public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido){
-
-    }
-    @Override
-    public void atacar2(Entidade alvo, ListaAtaques ataqueEscolhido){
-
-    }
-    @Override
-    public String getListaAtaques(){
 
     }
 }
