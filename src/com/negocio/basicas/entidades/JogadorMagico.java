@@ -6,10 +6,13 @@ public abstract class JogadorMagico extends Entidade implements Magico {
     //Atibutos
     private int mana;
 
+    //Metodos Abstratos
+    public abstract String getListaAtaques();
+
     //Metodos
     @Override
     public String getStatus(){
-        return super.getStatus() + "\nMana: " + this.getMana();
+        return super.getStatus() + " / Mana: " + this.getMana();
     }
 
     //Metodos Padroes

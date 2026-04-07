@@ -52,6 +52,13 @@ public class Console {
         }
     }
     public static void batalha(Entidade player, Entidade enemy){
-
+        System.out.println("| INIMIGO |");
+        System.out.println(enemy.getStatus() + "\n");
+        System.out.println("| JOGADOR |");
+        System.out.println(player.getStatus() + "\n");
+        Hub.linhas();
+        System.out.println("INFORME SUA ACAO");
+        System.out.println("1 - Atacar");
+        Hub.linhas();
     }
 }

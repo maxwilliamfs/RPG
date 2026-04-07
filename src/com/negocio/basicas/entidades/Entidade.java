@@ -1,8 +1,14 @@
 package com.negocio.basicas.entidades;
 
+import com.negocio.basicas.Ataque;
+import com.negocio.basicas.enuns.ListaAtaques;
+
+import java.util.ArrayList;
+
 public abstract class Entidade {
     //Instancias e Atributos
     private String nome;
+    private ArrayList<Ataque> ataques;
     private int pVida,pEstamina;
 
     //Metodos
@@ -25,12 +31,12 @@ public abstract class Entidade {
         this.setpEstamina(this.getpEstamina() + valor);
     }
     public String getStatus(){
-        return "Nome: " + this.getNome() + "\n" + "HP: " + this.getpVida() + "\n" + "Stamina: " +
-        this.getpEstamina();
+        return "Nome: " + this.getNome() + " / HP:" + this.getpVida() + "\n" + "Stamina: " + this.getpEstamina();
     }
 
     //Metodos Abstratos
-    public abstract void atacar(Entidade alvo);
+    public abstract void atacar(Entidade alvo, ListaAtaques ataqueEscolhido);
+    public abstract void atacar2(Entidade alvo, ListaAtaques ataqueEscolhido);
 
     //Metodos Padroes
     public String getNome() {
@@ -50,5 +56,11 @@ public abstract class Entidade {
     }
     public void setpVida(int pVida) {
         this.pVida = pVida;
+    }
+    public ArrayList<Ataque> getAtaques() {
+        return ataques;
+    }
+    public void setAtaques(ArrayList<Ataque> ataques) {
+        this.ataques = ataques;
     }
 }

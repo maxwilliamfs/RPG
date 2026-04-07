@@ -9,7 +9,7 @@ public abstract class InimigoMagico extends Entidade implements Magico {
     //Metodos
     @Override
     public String getStatus(){
-        return super.getStatus() + "\nMana: " + this.getMana();
+        return super.getStatus() + " / Mana: " + this.getMana();
     }
 
     //Metodos Padroes
