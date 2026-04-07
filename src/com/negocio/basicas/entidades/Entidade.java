@@ -1,6 +1,5 @@
 package com.negocio.basicas.entidades;
-
-import com.negocio.basicas.Ataque;
+import com.negocio.basicas.AtaqueAbstrato;
 import com.negocio.basicas.enuns.ListaAtaques;
 
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 public abstract class Entidade {
     //Instancias e Atributos
     private String nome;
-    private ArrayList<Ataque> ataques;
+    private ArrayList<AtaqueAbstrato> ataques;
     private int pVida,pEstamina;
 
     //Metodos
@@ -57,10 +56,10 @@ public abstract class Entidade {
     public void setpVida(int pVida) {
         this.pVida = pVida;
     }
-    public ArrayList<Ataque> getAtaques() {
+    public ArrayList<AtaqueAbstrato> getAtaques() {
         return ataques;
     }
-    public void setAtaques(ArrayList<Ataque> ataques) {
+    public void setAtaques(ArrayList<AtaqueAbstrato> ataques) {
         this.ataques = ataques;
     }
 }

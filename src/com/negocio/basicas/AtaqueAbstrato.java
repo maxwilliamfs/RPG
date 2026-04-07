@@ -1,14 +1,9 @@
 package com.negocio.basicas;
 
-public class Ataque {
+public class AtaqueAbstrato {
     //Atributos
     private String nome;
-    private int dano, stamina;
-    
-    //Construtor
-    public Ataque(String nome, int dano, int stamina){
-
-    }
+    private int dano, stamina, mana;
 
     //Getters e Setters
     public String getNome() {
