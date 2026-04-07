@@ -5,6 +5,13 @@ public class AtaqueAbstrato {
     private String nome;
     private int dano, stamina, mana;
 
+    //Construtor
+    public AtaqueAbstrato(String nome, int dano, int stamina){
+        this.setDano(dano);
+        this.setStamina(stamina);
+        this.setNome(nome);
+    }
+
     //Getters e Setters
     public String getNome() {
         return nome;
