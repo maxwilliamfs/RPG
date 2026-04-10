@@ -9,29 +9,29 @@ public abstract class Entidade {
     //Instancias e Atributos
     private String nome;
     private ArrayList<AtaqueAbstrato> ataques;
-    private int pVida,pEstamina;
+    private int Vida,stamina;
 
     //Metodos
     public boolean isVivo(){
-        if(this.getpVida() <= 0){
+        if(this.getVida() <= 0){
             return false;
         }
         return true;
     }
     public void receberDano(int valor){
-        this.setpVida(this.getpVida() - valor);
+        this.setVida(this.getVida() - valor);
     }
     public void curar(int valor){
-        this.setpVida(this.getpVida() + valor);
+        this.setVida(this.getVida() + valor);
     }
     public void perderEstamina(int valor){
-        this.setpEstamina(this.getpEstamina() - valor);
+        this.setStamina(this.getStamina() - valor);
     }
     public void GanharEstamina(int valor){
-        this.setpEstamina(this.getpEstamina() + valor);
+        this.setStamina(this.getStamina() + valor);
     }
     public String getStatus(){
-        return "Nome: " + this.getNome() + " / HP:" + this.getpVida() + "\n" + "Stamina: " + this.getpEstamina();
+        return "Nome: " + this.getNome() + " / HP:" + this.getVida() + "\n" + "Stamina: " + this.getStamina();
     }
     public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido){
         AtaqueAbstrato escolhido = null;
@@ -44,6 +44,8 @@ public abstract class Entidade {
                 break;
         }
         System.out.println(this.getNome() + " usou " + escolhido.getNome() + "!!!!");
+        if(this.getStamina() >= )
+
         alvo.receberDano(escolhido.getDano());
         this.perderEstamina(escolhido.getStamina());
         if(escolhido instanceof AtaqueMagico){
@@ -59,17 +61,17 @@ public abstract class Entidade {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public int getpEstamina() {
-        return pEstamina;
+    public int getStamina() {
+        return stamina;
     }
-    public void setpEstamina(int pEstamina) {
-        this.pEstamina = pEstamina;
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
     }
-    public int getpVida() {
-        return pVida;
+    public int getVida() {
+        return Vida;
     }
-    public void setpVida(int pVida) {
-        this.pVida = pVida;
+    public void setVida(int Vida) {
+        this.Vida = Vida;
     }
     public ArrayList<AtaqueAbstrato> getAtaques() {
         return ataques;

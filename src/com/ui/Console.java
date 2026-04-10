@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 import com.negocio.basicas.entidades.*;
+import com.negocio.basicas.enuns.ListaAtaques;
 
 import java.util.Scanner;
 
@@ -59,6 +60,46 @@ public class Console {
         Hub.linhas();
         System.out.println("INFORME SUA ACAO");
         System.out.println("1 - Atacar");
+        System.out.println("2 - Usar item");
+        System.out.println("3 - Passar o turno");
+        String opp = scanner.nextLine();
+        int op = Integer.parseInt(opp);
+        switch (op){
+            case 1:
+                player.atacar(enemy,menuAtaque(player));
+                break;
+            case 2:
+                //NAO FIZ A INTEFACE DE ITEM
+                break;
+        }
+        int ataqueInimigo = random.nextInt(2) + 1;
+        ListaAtaques escolhido = null;
+        switch (ataqueInimigo) {
+            case 1:
+                escolhido = ListaAtaques.ATAQUE1;
+                break;
+            case 2:
+                escolhido = ListaAtaques.ATAQUE2;
+                break;
+        }
+        enemy.atacar(player,escolhido);
         Hub.linhas();
+    }
+    public static ListaAtaques menuAtaque(Entidade player){
+        ListaAtaques escolhido = null;
+        System.out.println("INFORME O ATAQUE");
+        System.out.println("1 -" + player.getAtaques().get(0).getNome());
+        System.out.println("2 -" + player.getAtaques().get(2).getNome());
+        String op = scanner.nextLine();
+        int opp = Integer.parseInt(op);
+        switch (opp){
+            case 1:
+                escolhido = ListaAtaques.ATAQUE1;
+                break;
+            case 2:
+                escolhido = ListaAtaques.ATAQUE2;
+                break;
+        }
+        return escolhido;
     }
 }
