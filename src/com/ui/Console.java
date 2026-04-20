@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.negocio.basicas.entidades.*;
 import com.negocio.basicas.enuns.ListaAtaques;
+import com.negocio.exceptions.RPGException;
 
 import java.util.Scanner;
 
@@ -18,39 +19,40 @@ public class Console {
         while(menu());
     }
     public static boolean menu(){
-        while (true) {
-            System.out.println("Bem vindo ao RPG");
-            System.out.println("Informe seu Personagem:");
-            System.out.println("1 - Fechar Programa");
-            System.out.println("2 - Cavaleiro");
-            System.out.println("3 - Feiticeiro");
-            String l = scanner.nextLine();
-            int op = Integer.parseInt(l);
+        System.out.println("Bem vindo ao RPG");
+        System.out.println("Informe seu Personagem:");
+        System.out.println("1 - Fechar Programa");
+        System.out.println("2 - Cavaleiro");
+        System.out.println("3 - Feiticeiro");
+        String l = scanner.nextLine();
+        int op = Integer.parseInt(l);
 
-            Entidade player = null;
-            switch (op) {
-                case 1:
-                    return false;
-                case 2:
-                    player = new Cavaleiro();
-                    break;
-                case 3:
-                    player = new Feiticeiro();
-                    break;
-            }
+        Entidade player = null;
+        switch (op) {
+            case 1:
+                return false;
+            case 2:
+                player = new Cavaleiro();
+                break;
+            case 3:
+                player = new Feiticeiro();
+                break;
+        }
 
-            Entidade enemy = null;
-            int r = random.nextInt(2) + 1;
-            switch (op) {
-                case 1:
-                    enemy = new Zumbi();
-                    break;
-                case 2:
-                    enemy = new Bruxa();
-                    break;
-            }
+        Entidade enemy = null;
+        int r = random.nextInt(2) + 1;
+        switch (op) {
+            case 1:
+                enemy = new Zumbi();
+                break;
+            case 2:
+                enemy = new Bruxa();
+                break;
+        }
+        while (player.isVivo()) {
             batalha(player,enemy);
         }
+        return false;
     }
     public static void batalha(Entidade player, Entidade enemy){
         System.out.println("| INIMIGO |");
@@ -66,12 +68,17 @@ public class Console {
         int op = Integer.parseInt(opp);
         switch (op){
             case 1:
-                player.atacar(enemy,menuAtaque(player));
+                try {
+                    player.atacar(enemy, menuAtaque(player));
+                } catch (RPGException Ex){
+                    System.out.println(Ex.getMessage());
+                }
                 break;
             case 2:
                 //NAO FIZ A INTEFACE DE ITEM
                 break;
         }
+        scanner.nextLine();
         int ataqueInimigo = random.nextInt(2) + 1;
         ListaAtaques escolhido = null;
         switch (ataqueInimigo) {
@@ -82,14 +89,19 @@ public class Console {
                 escolhido = ListaAtaques.ATAQUE2;
                 break;
         }
-        enemy.atacar(player,escolhido);
+        try {
+            enemy.atacar(player,escolhido);
+        } catch (RPGException Ex){
+            System.out.println(Ex.getMessage());
+        }
+        scanner.nextLine();
         Hub.linhas();
     }
     public static ListaAtaques menuAtaque(Entidade player){
         ListaAtaques escolhido = null;
-        System.out.println("INFORME O ATAQUE");
-        System.out.println("1 -" + player.getAtaques().get(0).getNome());
-        System.out.println("2 -" + player.getAtaques().get(2).getNome());
+        System.out.println("\nINFORME O ATAQUE");
+        System.out.println("1 - " + player.getAtaques().get(0).getNome());
+        System.out.println("2 - " + player.getAtaques().get(1).getNome());
         String op = scanner.nextLine();
         int opp = Integer.parseInt(op);
         switch (opp){
@@ -101,5 +113,9 @@ public class Console {
                 break;
         }
         return escolhido;
+    }
+    public static void finalizarRodada(Entidade player, Entidade enemy){
+        player.setStamina(player.getStamina() + 5);
+        enemy.setStamina(enemy.getStamina() + 5);
     }
 }

@@ -6,7 +6,9 @@ import com.negocio.basicas.enuns.ListaAtaques;
 public class Cavaleiro extends Jogador{
     //Contrutor
     public Cavaleiro(){
-        this.getAtaques().set(1, BancoAtaques.espadada);
-        this.getAtaques().set(2, BancoAtaques.corteProfundo);
+        this.setNome("Cavaleiro");
+        this.setVida(30);
+        this.getAtaques().add(BancoAtaques.espadada);
+        this.getAtaques().add(BancoAtaques.corteProfundo);
     }
 }

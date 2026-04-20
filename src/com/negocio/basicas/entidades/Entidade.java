@@ -2,14 +2,21 @@ package com.negocio.basicas.entidades;
 import com.negocio.basicas.AtaqueAbstrato;
 import com.negocio.basicas.AtaqueMagico;
 import com.negocio.basicas.enuns.ListaAtaques;
+import com.negocio.exceptions.AcaoInvalidaException;
+import com.negocio.exceptions.RPGException;
 
 import java.util.ArrayList;
 
 public abstract class Entidade {
     //Instancias e Atributos
     private String nome;
-    private ArrayList<AtaqueAbstrato> ataques;
+    private ArrayList<AtaqueAbstrato> ataques = new ArrayList<>();
     private int Vida,stamina;
+
+    //Construtor
+    public Entidade(){
+        this.setStamina(5);
+    }
 
     //Metodos
     public boolean isVivo(){
@@ -33,7 +40,7 @@ public abstract class Entidade {
     public String getStatus(){
         return "Nome: " + this.getNome() + " / HP:" + this.getVida() + "\n" + "Stamina: " + this.getStamina();
     }
-    public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido){
+    public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido) throws RPGException {
         AtaqueAbstrato escolhido = null;
         switch (ataqueEscolhido){
             case ATAQUE1:
@@ -44,14 +51,20 @@ public abstract class Entidade {
                 break;
         }
         System.out.println(this.getNome() + " usou " + escolhido.getNome() + "!!!!");
-        if(this.getStamina() >= )
-
-        alvo.receberDano(escolhido.getDano());
-        this.perderEstamina(escolhido.getStamina());
-        if(escolhido instanceof AtaqueMagico){
-            JogadorMagico usuario = (JogadorMagico) this;
-            usuario.perderMana(((AtaqueMagico) escolhido).getMana());
+        if(requisitosAtaque(escolhido)){
+            alvo.receberDano(escolhido.getDano());
+            consumirRecursos(escolhido);
         }
+    }
+    public boolean requisitosAtaque(AtaqueAbstrato escolhido) throws RPGException {
+        if(this.getStamina() >= escolhido.getStamina()){
+            return true;
+        } else {
+            throw new AcaoInvalidaException("Stamina Insuficiente!");
+        }
+    }
+    public void consumirRecursos(AtaqueAbstrato escolhido){
+        this.perderEstamina(escolhido.getStamina());
     }
 
     //Metodos Padroes
