@@ -96,6 +96,8 @@ public class Console {
         }
         scanner.nextLine();
         Hub.linhas();
+        player.finalizarTurno();
+        enemy.finalizarTurno();
     }
     public static ListaAtaques menuAtaque(Entidade player){
         ListaAtaques escolhido = null;
@@ -113,9 +115,5 @@ public class Console {
                 break;
         }
         return escolhido;
-    }
-    public static void finalizarRodada(Entidade player, Entidade enemy){
-        player.setStamina(player.getStamina() + 5);
-        enemy.setStamina(enemy.getStamina() + 5);
     }
 }

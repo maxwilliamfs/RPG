@@ -9,7 +9,13 @@ public abstract class EntidadeMagica extends Entidade{
     //Atibutos
     private int mana;
 
-    //Metodos
+    //Construtor
+    public EntidadeMagica (String nome, int vida, AtaqueAbstrato at1, AtaqueAbstrato at2){
+        super(nome, vida, at1, at2);
+        this.setMana(5);
+    }
+
+    //Metodos de Ataque
     @Override
     public boolean requisitosAtaque(AtaqueAbstrato escolhido) throws RPGException {
         if(!(escolhido instanceof AtaqueMagico)){
@@ -30,8 +36,15 @@ public abstract class EntidadeMagica extends Entidade{
     public void consumirRecursos(AtaqueAbstrato escolhido){
         AtaqueMagico escolhidoMagico = (AtaqueMagico) escolhido;
         super.consumirRecursos(escolhido);
-        this.setMana(this.getMana() - escolhidoMagico.getMana());
+        this.perderMana(((AtaqueMagico) escolhido).getMana());
     }
+    @Override
+    public void finalizarTurno(){
+        super.finalizarTurno();
+        this.ganharMana(10);
+    }
+
+    //Metodos
     @Override
     public String getStatus(){
         return super.getStatus() + " / Mana: " + this.getMana();

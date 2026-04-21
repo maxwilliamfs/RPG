@@ -1,6 +1,7 @@
 package com.negocio.basicas.entidades;
 import com.negocio.basicas.AtaqueAbstrato;
 import com.negocio.basicas.AtaqueMagico;
+import com.negocio.basicas.BancoAtaques;
 import com.negocio.basicas.enuns.ListaAtaques;
 import com.negocio.exceptions.AcaoInvalidaException;
 import com.negocio.exceptions.RPGException;
@@ -14,8 +15,12 @@ public abstract class Entidade {
     private int Vida,stamina;
 
     //Construtor
-    public Entidade(){
+    public Entidade (String nome, int vida, AtaqueAbstrato at1, AtaqueAbstrato at2){
         this.setStamina(5);
+        this.setVida(vida);
+        this.setNome(nome);
+        this.getAtaques().add(at1);
+        this.getAtaques().add(at2);
     }
 
     //Metodos
@@ -31,15 +36,17 @@ public abstract class Entidade {
     public void curar(int valor){
         this.setVida(this.getVida() + valor);
     }
-    public void perderEstamina(int valor){
+    public void perderStamina(int valor){
         this.setStamina(this.getStamina() - valor);
     }
-    public void GanharEstamina(int valor){
+    public void GanharStamina(int valor){
         this.setStamina(this.getStamina() + valor);
     }
     public String getStatus(){
         return "Nome: " + this.getNome() + " / HP:" + this.getVida() + "\n" + "Stamina: " + this.getStamina();
     }
+
+    //Metodos Ataque
     public void atacar(Entidade alvo, ListaAtaques ataqueEscolhido) throws RPGException {
         AtaqueAbstrato escolhido = null;
         switch (ataqueEscolhido){
@@ -64,7 +71,10 @@ public abstract class Entidade {
         }
     }
     public void consumirRecursos(AtaqueAbstrato escolhido){
-        this.perderEstamina(escolhido.getStamina());
+        this.perderStamina(escolhido.getStamina());
+    }
+    public void finalizarTurno(){
+        this.GanharStamina(5);
     }
 
     //Metodos Padroes
