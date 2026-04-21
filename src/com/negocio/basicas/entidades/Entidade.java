@@ -57,7 +57,6 @@ public abstract class Entidade {
                 escolhido = this.getAtaques().get(1);
                 break;
         }
-        System.out.println(this.getNome() + " usou " + escolhido.getNome() + "!!!!");
         if(requisitosAtaque(escolhido)){
             alvo.receberDano(escolhido.getDano());
             consumirRecursos(escolhido);

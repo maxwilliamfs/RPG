@@ -3,6 +3,8 @@ package com.ui;
 import java.awt.*;
 import java.util.Random;
 
+import com.negocio.basicas.AtaqueAbstrato;
+import com.negocio.basicas.AtaqueMagico;
 import com.negocio.basicas.entidades.*;
 import com.negocio.basicas.enuns.ListaAtaques;
 import com.negocio.exceptions.RPGException;
@@ -41,7 +43,7 @@ public class Console {
 
         Entidade enemy = null;
         int r = random.nextInt(2) + 1;
-        switch (op) {
+        switch (r) {
             case 1:
                 enemy = new Zumbi();
                 break;
@@ -49,10 +51,10 @@ public class Console {
                 enemy = new Bruxa();
                 break;
         }
-        while (player.isVivo()) {
+        while (player.isVivo() && enemy.isVivo()) {
             batalha(player,enemy);
         }
-        return false;
+        return true;
     }
     public static void batalha(Entidade player, Entidade enemy){
         System.out.println("| INIMIGO |");
@@ -69,7 +71,9 @@ public class Console {
         switch (op){
             case 1:
                 try {
-                    player.atacar(enemy, menuAtaque(player));
+                    ListaAtaques escolhido = menuAtaque(player);
+                    player.atacar(enemy, escolhido);
+                    printAcao(player,escolhido);
                 } catch (RPGException Ex){
                     System.out.println(Ex.getMessage());
                 }
@@ -90,6 +94,7 @@ public class Console {
                 break;
         }
         try {
+            printAcao(enemy,escolhido);
             enemy.atacar(player,escolhido);
         } catch (RPGException Ex){
             System.out.println(Ex.getMessage());
@@ -102,8 +107,8 @@ public class Console {
     public static ListaAtaques menuAtaque(Entidade player){
         ListaAtaques escolhido = null;
         System.out.println("\nINFORME O ATAQUE");
-        System.out.println("1 - " + player.getAtaques().get(0).getNome());
-        System.out.println("2 - " + player.getAtaques().get(1).getNome());
+        printAtaque("1",player.getAtaques().get(0));
+        printAtaque("2",player.getAtaques().get(1));
         String op = scanner.nextLine();
         int opp = Integer.parseInt(op);
         switch (opp){
@@ -114,6 +119,27 @@ public class Console {
                 escolhido = ListaAtaques.ATAQUE2;
                 break;
         }
+
         return escolhido;
+    }
+    private static void printAtaque(String mensagem,AtaqueAbstrato ataque){
+        System.out.print(mensagem + " - " + ataque.getNome() + ": Stamina - " + ataque.getStamina() + " / Dano - " + ataque.getDano());
+        if(ataque instanceof AtaqueMagico){
+            System.out.println(" / Mana - " + ((AtaqueMagico) ataque).getMana());
+        } else {
+            System.out.print("\n");
+        }
+    }
+    private static void printAcao(Entidade entidade, ListaAtaques escolhido) {
+        AtaqueAbstrato ataque = null;
+        switch (escolhido){
+            case ATAQUE1:
+                ataque = entidade.getAtaques().get(0);
+                break;
+            case ATAQUE2:
+                ataque = entidade.getAtaques().get(1);
+                break;
+        }
+        System.out.println(entidade.getNome() + " usou " + ataque.getNome() + "!!!!");
     }
 }
