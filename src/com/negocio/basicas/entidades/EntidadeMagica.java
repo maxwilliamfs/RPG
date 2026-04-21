@@ -5,12 +5,33 @@ import com.negocio.basicas.AtaqueMagico;
 import com.negocio.exceptions.AcaoInvalidaException;
 import com.negocio.exceptions.RPGException;
 
-public class EntidadeMagica extends Entidade{
+public abstract class EntidadeMagica extends Entidade{
     //Atibutos
     private int mana;
 
     //Metodos
-
+    @Override
+    public boolean requisitosAtaque(AtaqueAbstrato escolhido) throws RPGException {
+        if(!(escolhido instanceof AtaqueMagico)){
+            return super.requisitosAtaque(escolhido);
+        }
+        if(this.getStamina() >= escolhido.getStamina()){
+            AtaqueMagico escolhidoMagico = (AtaqueMagico) escolhido;
+            if(this.getMana() >= escolhidoMagico.getMana()){
+                return true;
+            } else {
+                throw new AcaoInvalidaException("Mana Insuficiente");
+            }
+        } else {
+            throw new AcaoInvalidaException("Stamina Insuficiente");
+        }
+    }
+    @Override
+    public void consumirRecursos(AtaqueAbstrato escolhido){
+        AtaqueMagico escolhidoMagico = (AtaqueMagico) escolhido;
+        super.consumirRecursos(escolhido);
+        this.setMana(this.getMana() - escolhidoMagico.getMana());
+    }
     @Override
     public String getStatus(){
         return super.getStatus() + " / Mana: " + this.getMana();
