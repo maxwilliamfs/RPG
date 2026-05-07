@@ -41,7 +41,7 @@ public abstract class EntidadeMagica extends Entidade{
     @Override
     public void finalizarTurno(){
         super.finalizarTurno();
-        this.ganharMana(10);
+        this.ganharMana(15);
     }
 
     //Metodos

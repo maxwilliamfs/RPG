@@ -22,23 +22,21 @@ public class Console {
     }
     public static boolean menu(){
         System.out.println("Bem vindo ao RPG");
-        System.out.println("Informe seu Personagem:");
-        System.out.println("1 - Fechar Programa");
-        System.out.println("2 - Cavaleiro");
-        System.out.println("3 - Feiticeiro");
-        String l = scanner.nextLine();
-        int op = Integer.parseInt(l);
+        System.out.println("1 - Cavaleiro");
+        System.out.println("2 - Feiticeiro");
+        System.out.println("3 - Fechar Programa");
+        int op = Hub.leitorInt("Informe seu Personagem:",true,1,3);
 
         Entidade player = null;
         switch (op) {
             case 1:
-                return false;
-            case 2:
                 player = new Cavaleiro();
                 break;
-            case 3:
+            case 2:
                 player = new Feiticeiro();
                 break;
+            case 3:
+                return false;
         }
 
         Entidade enemy = null;
@@ -57,23 +55,23 @@ public class Console {
         return true;
     }
     public static void batalha(Entidade player, Entidade enemy){
+        Hub.linhas();
         System.out.println("| INIMIGO |");
         System.out.println(enemy.getStatus() + "\n");
         System.out.println("| JOGADOR |");
         System.out.println(player.getStatus() + "\n");
         Hub.linhas();
-        System.out.println("INFORME SUA ACAO");
         System.out.println("1 - Atacar");
         System.out.println("2 - Usar item");
         System.out.println("3 - Passar o turno");
-        String opp = scanner.nextLine();
-        int op = Integer.parseInt(opp);
+        int op = Hub.leitorInt("| INFORME SUA ACAO |",true,1,3);2
         switch (op){
             case 1:
                 try {
                     ListaAtaques escolhido = menuAtaque(player);
                     player.atacar(enemy, escolhido);
                     printAcao(player,escolhido);
+                    scanner.nextLine();
                 } catch (RPGException Ex){
                     System.out.println(Ex.getMessage());
                 }
@@ -82,15 +80,17 @@ public class Console {
                 //NAO FIZ A INTEFACE DE ITEM
                 break;
         }
-        scanner.nextLine();
         int ataqueInimigo = random.nextInt(2) + 1;
         ListaAtaques escolhido = null;
+        AtaqueAbstrato ataque = null;
         switch (ataqueInimigo) {
             case 1:
                 escolhido = ListaAtaques.ATAQUE1;
+                ataque = enemy.getAtaques().get(0);
                 break;
             case 2:
                 escolhido = ListaAtaques.ATAQUE2;
+                ataque = enemy.getAtaques().get(1);
                 break;
         }
         try {
@@ -100,17 +100,26 @@ public class Console {
             System.out.println(Ex.getMessage());
         }
         scanner.nextLine();
-        Hub.linhas();
         player.finalizarTurno();
         enemy.finalizarTurno();
+        if(!player.isVivo() || !enemy.isVivo()) {
+            if (!player.isVivo()) {
+                System.out.println("DERROTA... nao foi dessa vez!!!");
+            }
+            if (!enemy.isVivo()) {
+                System.out.println("VITORIA!!! Parabens!!!");
+            }
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+        }
     }
     public static ListaAtaques menuAtaque(Entidade player){
         ListaAtaques escolhido = null;
-        System.out.println("\nINFORME O ATAQUE");
+        Hub.linhas();
         printAtaque("1",player.getAtaques().get(0));
         printAtaque("2",player.getAtaques().get(1));
-        String op = scanner.nextLine();
-        int opp = Integer.parseInt(op);
+        int opp = Hub.leitorInt("| INFORME O ATAQUE |",true,1,2);
+        Hub.linhas();
         switch (opp){
             case 1:
                 escolhido = ListaAtaques.ATAQUE1;
@@ -141,5 +150,12 @@ public class Console {
                 break;
         }
         System.out.println(entidade.getNome() + " usou " + ataque.getNome() + "!!!!");
+        System.out.print("Stamina: " + ataque.getStamina());
+        if(ataque instanceof AtaqueMagico){
+            AtaqueMagico atkMagico = (AtaqueMagico) ataque;
+            System.out.println("/ Mana: " + atkMagico.getMana());
+        } else {
+            System.out.println();
+        }
     }
 }
