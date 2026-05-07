@@ -64,7 +64,7 @@ public class Console {
         System.out.println("1 - Atacar");
         System.out.println("2 - Usar item");
         System.out.println("3 - Passar o turno");
-        int op = Hub.leitorInt("| INFORME SUA ACAO |",true,1,3);2
+        int op = Hub.leitorInt("| INFORME SUA ACAO |",true,1,3);
         switch (op){
             case 1:
                 try {
