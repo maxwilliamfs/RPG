@@ -26,6 +26,10 @@ public class Console {
         System.out.println("2 - Feiticeiro");
         System.out.println("3 - Fechar Programa");
         int op = Hub.leitorInt("Informe seu Personagem:",true,1,3);
+        char resp = Hub.leitorChar("Deseja adicionar itens ao seu personagem? [S/N]",new char[]{'S','s','N','n'});
+        if(resp == 'S' || resp == 's'){
+
+        }
 
         Entidade player = null;
         switch (op) {

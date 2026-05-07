@@ -39,7 +39,7 @@ public abstract class Entidade {
     public void perderStamina(int valor){
         this.setStamina(this.getStamina() - valor);
     }
-    public void GanharStamina(int valor){
+    public void ganharStamina(int valor){
         this.setStamina(this.getStamina() + valor);
     }
     public String getStatus(){
